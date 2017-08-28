@@ -1,11 +1,11 @@
 #include <stdlib.h>
 
-typedef struct ponto_plano {
+typedef struct ponto {
     double x;
     double y;
-}ponto_plano;
+}ponto;
 
 typedef struct circulo {
-    struct ponto_plano ponto;
+    struct ponto pontoCentro;
     double raio;
 }circulo;

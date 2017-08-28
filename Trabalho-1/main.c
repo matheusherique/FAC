@@ -1,28 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include "geometric_types.h"
 
 int main() {
-  double x[3] = {0};
-  double y[3] = {0};
+  ponto p[3];
   double distance_between_AB = 0;
   double distance_between_BC = 0;
   double distance_between_CA = 0;
   double radius = 0;
   double s = 0, u = 0, v = 0, d = 0;
-  double center_x = 0, center_y = 0;
+  circulo c;
 
   int i = 0;
   while(i < 3){
-    scanf("%lf %lf", &x[i], &y[i]);
+    scanf("%lf %lf", &p[i].x, &p[i].y);
     i++;
   }
 
-  distance_between_AB = sqrt((x[0] - x[1]) * (x[0] - x[1]) + (y[0]-y[1]) *(y[0]-y[1]));
-  distance_between_BC = sqrt((x[1] - x[2]) * (x[1] - x[2]) + (y[1]-y[2]) *(y[1]-y[2]));
-  distance_between_CA = sqrt((x[2] - x[0]) * (x[2] - x[0]) + (y[2]-y[0]) *(y[2]-y[0]));
+  distance_between_AB = sqrt((p[0].x - p[1].x) * (p[0].x - p[1].x) + (p[0].y-p[1].y) *(p[0].y-p[1].y));
+  distance_between_BC = sqrt((p[1].x - p[2].x) * (p[1].x - p[2].x) + (p[1].y-p[2].y) *(p[1].y-p[2].y));
+  distance_between_CA = sqrt((p[2].x - p[0].x) * (p[2].x - p[0].x) + (p[2].y-p[0].y) *(p[2].y-p[0].y));
 
-  d = ((x[0]-x[1])*(y[1] - y[2])) - ((x[1] - x[2])*(y[0] - y[1]));
+  d = ((p[0].x - p[1].x)*(p[1].y - p[2].y)) - ((p[1].x - p[2].x)*(p[0].y - p[1].y));
 
   s = (distance_between_AB + distance_between_BC + distance_between_CA) / 2;
 
@@ -30,18 +30,18 @@ int main() {
           (4 * sqrt(s * (s - distance_between_AB) * (s - distance_between_CA) *
           (s - distance_between_BC)));
 
-  u = (pow(x[0],2) - pow(x[1],2) + pow(y[0],2) - pow(y[1],2)) / 2;
-  v = (pow(x[1],2) - pow(x[2],2) + pow(y[1],2) - pow(y[2],2)) / 2;
+  u = (pow(p[0].x,2) - pow(p[1].x,2) + pow(p[0].y,2) - pow(p[1].y,2)) / 2;
+  v = (pow(p[1].x,2) - pow(p[2].x,2) + pow(p[1].y,2) - pow(p[2].y,2)) / 2;
 
-  center_x = (u * (y[1] - y[2])- v * (y[0] - y[1])) / d;
-  center_y = (v * (x[0] - x[1])- u * (x[1] - x[2])) / d;
+  c.pontoCentro.x = (u * (p[1].y - p[2].y)- v * (p[0].y - p[1].y)) / d;
+  c.pontoCentro.y = (v * (p[0].x - p[1].x)- u * (p[1].x - p[2].x)) / d;
 
   if(radius != radius || radius == INFINITY){
     printf("Circulo nao viavel.\n");
   } else {
     //printf("AB: %.3f, BC: %.3f, CA: %.3f\n", distance_between_AB,distance_between_BC,distance_between_CA);
     printf("Radius: %.3f\n", radius );
-    printf("Centro: (%.3f, %.3f).\n", center_x, center_y );
+    printf("Centro: (%.3f, %.3f).\n",c.pontoCentro.x, c.pontoCentro.y);
   }
 
   return 0;
