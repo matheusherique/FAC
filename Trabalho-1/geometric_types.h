@@ -1,11 +1,14 @@
-#include <stdlib.h>
+#ifndef GEOMETRIC_TYPES_H
+#define GEOMETRIC_TYPES_H
 
-typedef struct ponto {
+typedef struct point {
     double x;
     double y;
-}ponto;
+}point;
 
-typedef struct circulo {
-    struct ponto pontoCentro;
-    double raio;
-}circulo;
+typedef struct circle {
+    struct point centerPoint;
+    double radius;
+}circle;
+
+#endif

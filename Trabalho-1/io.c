@@ -1,16 +1,21 @@
-#include "geometric_types"
+#include "io.h"
+#include "geometric_types.h"
+#include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
 
-int setIn(){
-  float x[3] = {0};
-  float y[3] = {0};
-  i = 0;
+void setIn(point p[3]){
+  int i = 0;
   while(i < 3){
-    scanf("%f %f", );
+    scanf("%lf %lf", &p[i].x, &p[i].y);
+    i++;
   }
 }
 
-int getIn(int x1, int y1, int x2, int y2, int x3, int y3) {
-  scanf();
+void out(circle c){
+  if(c.radius != c.radius || c.radius == INFINITY){
+    printf("Circulo nao viavel.\n");
+  } else {
+    printf("Radius: %.3f\n", c.radius );
+    printf("Centro: (%.3f, %.3f).\n",c.centerPoint.x, c.centerPoint.y);
+  }
 }
