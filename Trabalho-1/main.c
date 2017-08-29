@@ -35,13 +35,16 @@ int main() {
 
   c.pontoCentro.x = (u * (p[1].y - p[2].y)- v * (p[0].y - p[1].y)) / d;
   c.pontoCentro.y = (v * (p[0].x - p[1].x)- u * (p[1].x - p[2].x)) / d;
-
+  printf("radius = %lf\n", radius);
+  printf("distance_between_AB = %lf\n", distance_between_AB);
+  printf("distance_between_BC = %lf\n", distance_between_BC);
+  printf("distance_between_CA = %lf\n", distance_between_CA);
   if(radius != radius || radius == INFINITY){
-    printf("Circulo nao viavel.\n");
+//    printf("Circulo nao viavel.\n");
   } else {
     //printf("AB: %.3f, BC: %.3f, CA: %.3f\n", distance_between_AB,distance_between_BC,distance_between_CA);
-    printf("Radius: %.3f\n", radius );
-    printf("Centro: (%.3f, %.3f).\n",c.pontoCentro.x, c.pontoCentro.y);
+//    printf("Radius: %.3f\n", radius );
+//    printf("Centro: (%.3f, %.3f).\n",c.pontoCentro.x, c.pontoCentro.y);
   }
 
   return 0;
