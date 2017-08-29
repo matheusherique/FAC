@@ -1,7 +1,6 @@
-#include<stdlib.h>
-#include<math.h>
+#ifndef IO_H
+#define IO_H
 #include "geometric_types.h"
-#include<stdio.h>
 
 double calcula_distancia(ponto_plano, ponto_plano);
 double calcula_raio(ponto_plano, ponto_plano, ponto_plano);
@@ -33,3 +32,4 @@ double calcula_raio(ponto_plano ponto1, ponto_plano ponto2, ponto_plano ponto3) 
         return raio;
     return raio;
 }
+#endif
