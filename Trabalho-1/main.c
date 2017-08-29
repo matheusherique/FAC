@@ -6,7 +6,8 @@
 #include "operation.h"
 
 int main() {
-  point p[3];
+  point *p;
+  p = (point *)malloc(3*sizeof(point));
   circle c;
   setIn(p);
   setCenterPoint(c, p);
