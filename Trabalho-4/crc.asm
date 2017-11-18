@@ -1,5 +1,6 @@
 .data
 	input_message: .asciiz "String de entrada: "
+	out_message: .asciiz "CRC32: "
 	input: .byte 16
 .text
 	
@@ -31,7 +32,9 @@ calc_crc32:
 		addu $t3, $s0, $t0		# $t3 = address of string[i]
 	       	lbu  $t6, ($t3)             	# $t6 = message[i]
 		#move $t4, $t6			# $t4 = byte = message[i];
-		xor $s2, $s2, $t6		# crc = crc ^ byte;
+		beq $t6, 10, imprime_saida      	# while (message[i] != 0)
+		xor $s2, $s2, $t6
+				# crc = crc ^ byte;
 		li $t7, 8			# $t7 = j = 8
 		loop_for:
 			subi $t7, $t7, 1
@@ -41,12 +44,15 @@ calc_crc32:
 			and $t1, $t1, $s3		# (0xEDB88320 & mask)
 			xor $s2, $t2, $t1		# crc = (crc >> 1) ^ (0xEDB88320 & mask);
 			bgt $t7, $zero, loop_for		# for (j = 7; j >= 0; j--)
-		beq $t6, 10, imprime_saida      	# while (message[i] != 0)
+
 		addi $t0, $t0, 1        		# $t0++, i = i + 1;
 		j loop_while
 
 		
 imprime_saida:
+	la $a0, out_message	# carrega string
+	li $v0, 4
+	syscall
 	not $s4, $s2
 	move $a0, $s4
 	li $v0, 34
